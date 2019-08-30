@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='it.mirko'
-version = '1.0.0'
+group='com.github.Mirkoddd'
+version = '1.0.2'
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.2"
 
         consumerProguardFiles 'consumer-rules.pro'
     }
