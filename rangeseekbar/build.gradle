@@ -31,5 +31,5 @@ dependencies {
 
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.Mirkoddd'
+group='it.mirko.rangeseekbar'
 version = '1.0'
