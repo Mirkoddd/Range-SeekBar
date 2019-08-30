@@ -166,6 +166,7 @@ public class RangeSeekBar extends FrameLayout {
                     break;
 
                 case ACTION_DOWN:
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
                     t1X = motionEvent.getX() - motionEvent.getRawX() + thumbStart.getTranslationX();
                     thumbStart.setPressed(true);
                     break;
@@ -184,6 +185,7 @@ public class RangeSeekBar extends FrameLayout {
                     invalidate();
 
                     break;
+
             }
             return true;
         }
@@ -199,6 +201,7 @@ public class RangeSeekBar extends FrameLayout {
                     break;
 
                 case ACTION_DOWN:
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
                     t2X = motionEvent.getX() - motionEvent.getRawX() + thumbEnd.getTranslationX();
                     thumbEnd.setPressed(true);
                     break;
