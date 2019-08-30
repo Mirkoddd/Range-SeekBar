@@ -29,3 +29,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
 }
 
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.Mirkoddd'
