@@ -32,3 +32,4 @@ dependencies {
 apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.Mirkoddd'
+version = '1.0'
