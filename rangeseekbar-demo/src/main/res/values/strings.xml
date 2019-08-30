@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">DemoRangeSeekBar</string>
+    <string name="app_name">Demo Range SeekBar</string>
+    <string name="normal_seek_bar">Normal SeekBar</string>
+    <string name="range_seek_bar">Range SeekBar</string>
 </resources>

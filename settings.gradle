@@ -1,2 +1,2 @@
-include ':app', ':rangeseekbar'
+include ':rangeseekbar-demo', ':rangeseekbar'
 rootProject.name='DemoRangeSeekBar'
