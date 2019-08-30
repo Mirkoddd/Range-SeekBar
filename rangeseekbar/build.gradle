@@ -4,6 +4,13 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='it.mirko.rangeseekbar'
 version = '1.0'
 
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
