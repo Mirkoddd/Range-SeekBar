@@ -17,9 +17,7 @@
     android:height="18dp"
     android:viewportWidth="18"
     android:viewportHeight="18"
-    android:tint="?colorControlActivated"
-    android:opticalInsetLeft="6dp"
-    android:opticalInsetRight="6dp">
+    android:tint="?colorControlActivated">
     <group
         android:name="thumb_0"
         android:translateX="9"
