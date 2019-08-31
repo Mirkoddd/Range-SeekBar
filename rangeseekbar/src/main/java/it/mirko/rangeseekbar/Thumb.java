@@ -1,6 +1,8 @@
 package it.mirko.rangeseekbar;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -16,12 +18,19 @@ public class Thumb extends FrameLayout {
 
     private Rect thumb;
     private View scrubber;
+    private Paint disableCircle;
+    private int circleRadius;
 
     Thumb(Context context) {
         super(context);
+        setWillNotDraw(false);
 
         int thumbSize = context.getResources().getDimensionPixelSize(R.dimen.thumb_size);
         thumb = new Rect(0, 0, thumbSize, thumbSize);
+        disableCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
+        disableCircle.setStyle(Paint.Style.STROKE);
+        disableCircle.setStrokeWidth(context.getResources().getDimension(R.dimen.line));
+        circleRadius = context.getResources().getDimensionPixelSize(R.dimen.circle_radius);
 
         addRipple(context);
 
@@ -29,6 +38,12 @@ public class Thumb extends FrameLayout {
         addScrubber(context);
 
 
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawCircle(getWidth()/2, getHeight()/2, circleRadius, disableCircle);
     }
 
     private void addRipple(Context context){
@@ -64,10 +79,22 @@ public class Thumb extends FrameLayout {
         scrubber.setBackground(wrapDrawable);
     }
 
+    void setDisableCircleColor(int color){
+        disableCircle.setColor(color);
+    }
+
     static int getStyledValueFor(Context context, int attr){
         TypedValue value = new TypedValue();
         context.getTheme().resolveAttribute(attr, value, true);
         return value.resourceId;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        scrubber.setVisibility(enabled ? VISIBLE : INVISIBLE);
+        disableCircle.setAlpha(enabled ? 0 : 255);
+        invalidate();
     }
 
     @Override

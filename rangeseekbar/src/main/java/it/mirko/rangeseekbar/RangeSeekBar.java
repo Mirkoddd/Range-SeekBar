@@ -98,6 +98,10 @@ public class RangeSeekBar extends FrameLayout {
         trackPaint.setStyle(Paint.Style.STROKE);
         trackPaint.setStrokeWidth(context.getResources().getDimension(R.dimen.line));
         trackPaint.setAlpha(130);
+
+        thumbStart.setDisableCircleColor(trackColor);
+        thumbEnd.setDisableCircleColor(trackColor);
+
     }
 
     /**
@@ -126,6 +130,7 @@ public class RangeSeekBar extends FrameLayout {
     public void setTrackColor(int color) {
         trackColor = color;
         trackPaint.setColor(color);
+        thumbStart.setDisableCircleColor(color);
         invalidate();
     }
 
@@ -139,17 +144,49 @@ public class RangeSeekBar extends FrameLayout {
         float dx2 = getDeltaX(thumbEnd, progress2);
         thumbEnd.setTranslationX(dx2);
 
-        canvas.drawLine(thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin,
+        if (dx1 > (rangePaint.getStrokeWidth()*3)) {
+            canvas.drawLine(thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin,
+                    getHeight() / 2,
+                    dx1 + thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin - (rangePaint.getStrokeWidth() * 3),
+                    getHeight() / 2,
+                    trackPaint);
+        }
+//        canvas.drawLine(thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin,
+//                getHeight() / 2,
+//                container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin,
+//                getHeight() / 2,
+//                trackPaint);
+
+        canvas.drawLine(dx1 + thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin  + (rangePaint.getStrokeWidth()*3),
                 getHeight() / 2,
-                container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin,
+                dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin - (rangePaint.getStrokeWidth()*3),
                 getHeight() / 2,
                 trackPaint);
+
+        if (container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin  > dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin + (rangePaint.getStrokeWidth() * 3)) {
+            canvas.drawLine(dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin + (rangePaint.getStrokeWidth() * 3),
+                    getHeight() / 2,
+                    container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin,
+                    getHeight() / 2,
+                    trackPaint);
+        }
 
         canvas.drawLine(dx1 + thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin,
                 getHeight() / 2,
                 dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin,
                 getHeight() / 2,
                 rangePaint);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        trackPaint.setAlpha(enabled ? 130 : 80);
+        rangePaint.setAlpha(enabled ? 255 : 0);
+        thumbStart.setOnTouchListener(enabled ? thumb1Touch : null);
+        thumbStart.setEnabled(enabled);
+        thumbEnd.setOnTouchListener(enabled ? thumb2Touch : null);
+        thumbEnd.setEnabled(enabled);
     }
 
     private float getDeltaX(Thumb thumb, float progress) {
