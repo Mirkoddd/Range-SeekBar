@@ -135,6 +135,11 @@ public class RangeSeekBar extends FrameLayout {
         invalidate();
     }
 
+    public void setMax(int max){
+        maxProgress = max;
+        invalidate();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -152,11 +157,6 @@ public class RangeSeekBar extends FrameLayout {
                     getHeight() / 2,
                     trackPaint);
         }
-//        canvas.drawLine(thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin,
-//                getHeight() / 2,
-//                container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin,
-//                getHeight() / 2,
-//                trackPaint);
 
         canvas.drawLine(dx1 + thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin  + (rangePaint.getStrokeWidth()*3),
                 getHeight() / 2,
