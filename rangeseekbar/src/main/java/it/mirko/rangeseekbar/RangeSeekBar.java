@@ -131,6 +131,7 @@ public class RangeSeekBar extends FrameLayout {
         trackColor = color;
         trackPaint.setColor(color);
         thumbStart.setDisableCircleColor(color);
+        thumbEnd.setDisableCircleColor(color);
         invalidate();
     }
 
