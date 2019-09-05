@@ -20,7 +20,7 @@ Add the dependency in your android app module's `build.gradle` file.
 
 ```gradle
 dependencies {
-    implementation 'com.github.Mirkoddd:Range-SeekBar:1.0.8'
+    implementation 'com.github.Mirkoddd:Range-SeekBar:1.0.9'
 }
 ```
 
