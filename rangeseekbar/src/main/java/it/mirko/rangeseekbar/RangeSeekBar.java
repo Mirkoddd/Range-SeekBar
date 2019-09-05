@@ -21,16 +21,13 @@ import static android.view.MotionEvent.ACTION_UP;
  * RangeSeekBar is an extension {@link FrameLayout} that adds two draggable thumbs.
  * The user can touch the thumbs and drag left or right to set the start and the end progress level.
  * Clients of the {@link RangeSeekBar} can attach a {@link OnRangeSeekBarListener} to be notified of the user's actions.
- *
  */
 public class RangeSeekBar extends FrameLayout {
 
     private Thumb thumbStart;
-    private float t1X;
     private float progress1 = 0;
 
     private Thumb thumbEnd;
-    private float t2X;
     private float progress2 = 50;
 
     private FrameLayout container;
@@ -38,10 +35,10 @@ public class RangeSeekBar extends FrameLayout {
     private int minDifference = 20;
 
     private Paint rangePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    int rangeColor;
+    private int rangeColor;
 
     private Paint trackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    int trackColor;
+    private int trackColor;
 
     private OnRangeSeekBarListener callback;
 
@@ -107,8 +104,8 @@ public class RangeSeekBar extends FrameLayout {
     /**
      * Set the color of the two thumbs and the range line connecting the two thumbs.
      * Default color is {@code R.attr.colorControlActivated}
-     * @param color The color that replace default range color
      *
+     * @param color The color that replace default range color
      */
     public void setRangeColor(int color) {
         rangeColor = color;
@@ -124,8 +121,8 @@ public class RangeSeekBar extends FrameLayout {
      * The color you replace will be fully opaque unless you set a color with an alpha component
      * <br>
      * <br> i.e. {@code Color.parseColor("#77000000")}
-     * @param color The color that replace default track color
      *
+     * @param color The color that replace default track color
      */
     public void setTrackColor(int color) {
         trackColor = color;
@@ -135,7 +132,7 @@ public class RangeSeekBar extends FrameLayout {
         invalidate();
     }
 
-    public void setMax(int max){
+    public void setMax(int max) {
         maxProgress = max;
         invalidate();
     }
@@ -150,7 +147,7 @@ public class RangeSeekBar extends FrameLayout {
         float dx2 = getDeltaX(thumbEnd, progress2);
         thumbEnd.setTranslationX(dx2);
 
-        if (dx1 > (rangePaint.getStrokeWidth()*3)) {
+        if (dx1 > (rangePaint.getStrokeWidth() * 3)) {
             canvas.drawLine(thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin,
                     getHeight() / 2,
                     dx1 + thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin - (rangePaint.getStrokeWidth() * 3),
@@ -158,13 +155,13 @@ public class RangeSeekBar extends FrameLayout {
                     trackPaint);
         }
 
-        canvas.drawLine(dx1 + thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin  + (rangePaint.getStrokeWidth()*3),
+        canvas.drawLine(dx1 + thumbStart.getHalfThumbWidth() + containerLayoutParams.leftMargin + (rangePaint.getStrokeWidth() * 3),
                 getHeight() / 2,
-                dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin - (rangePaint.getStrokeWidth()*3),
+                dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin - (rangePaint.getStrokeWidth() * 3),
                 getHeight() / 2,
                 trackPaint);
 
-        if (container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin  > dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin + (rangePaint.getStrokeWidth() * 3)) {
+        if (container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin > dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin + (rangePaint.getStrokeWidth() * 3)) {
             canvas.drawLine(dx2 + thumbEnd.getHalfThumbWidth() + containerLayoutParams.rightMargin + (rangePaint.getStrokeWidth() * 3),
                     getHeight() / 2,
                     container.getWidth() - containerLayoutParams.leftMargin - containerLayoutParams.rightMargin,
@@ -195,6 +192,8 @@ public class RangeSeekBar extends FrameLayout {
     }
 
     private OnTouchListener thumb1Touch = new OnTouchListener() {
+        private float t1X;
+
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             switch (motionEvent.getAction()) {
@@ -224,12 +223,17 @@ public class RangeSeekBar extends FrameLayout {
 
                     break;
 
+                default:
+                    return false;
+
             }
             return true;
         }
     };
 
     private OnTouchListener thumb2Touch = new OnTouchListener() {
+        private float t2X;
+
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             switch (motionEvent.getAction()) {
@@ -258,6 +262,10 @@ public class RangeSeekBar extends FrameLayout {
                     invalidate();
 
                     break;
+
+                default:
+                    return false;
+
             }
             return true;
         }
@@ -265,6 +273,7 @@ public class RangeSeekBar extends FrameLayout {
 
     /**
      * Set the progress and the position of left Thumb
+     *
      * @param progress the progress value of left Thumb
      */
     public void setStartProgress(int progress) {
@@ -274,6 +283,7 @@ public class RangeSeekBar extends FrameLayout {
 
     /**
      * Set the progress and the position of right Thumb
+     *
      * @param progress the progress value of right Thumb
      */
     public void setEndProgress(int progress) {
@@ -284,6 +294,7 @@ public class RangeSeekBar extends FrameLayout {
 
     /**
      * Set the min progress threshold between the two Thumbs
+     *
      * @param difference the min progress threshold between the two Thumbs
      */
     public void setMinDifference(int difference) {

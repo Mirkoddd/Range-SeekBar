@@ -14,7 +14,8 @@ import it.mirko.rangeseekbar.RangeSeekBar;
 public class DemoActivity extends AppCompatActivity implements OnRangeSeekBarListener, CompoundButton.OnCheckedChangeListener {
 
     private RangeSeekBar rangeSeekBar;
-    private TextView startText, endText;
+    private TextView startText;
+    private TextView endText;
     private SeekBar seekBar;
     private CheckBox enable;
 

@@ -21,7 +21,7 @@ public class Thumb extends FrameLayout {
     private Paint disableCircle;
     private int circleRadius;
 
-    Thumb(Context context) {
+    protected Thumb(Context context) {
         super(context);
         setWillNotDraw(false);
 
@@ -34,10 +34,7 @@ public class Thumb extends FrameLayout {
 
         addRipple(context);
 
-
         addScrubber(context);
-
-
     }
 
     @Override
@@ -72,18 +69,18 @@ public class Thumb extends FrameLayout {
         addView(scrubber, scrubberLayoutParams);
     }
 
-    void setColor(int color){
+    protected void setColor(int color){
         Drawable drawable = scrubber.getBackground();
         Drawable wrapDrawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTint(wrapDrawable, color);
         scrubber.setBackground(wrapDrawable);
     }
 
-    void setDisableCircleColor(int color){
+    protected void setDisableCircleColor(int color){
         disableCircle.setColor(color);
     }
 
-    static int getStyledValueFor(Context context, int attr){
+    protected static int getStyledValueFor(Context context, int attr){
         TypedValue value = new TypedValue();
         context.getTheme().resolveAttribute(attr, value, true);
         return value.resourceId;
@@ -102,11 +99,11 @@ public class Thumb extends FrameLayout {
         return super.performClick();
     }
 
-    int getHalfThumbWidth() {
+    protected int getHalfThumbWidth() {
         return thumb.width() / 2;
     }
 
-    int getThumbWidth() {
+    protected int getThumbWidth() {
         return thumb.width();
     }
 
