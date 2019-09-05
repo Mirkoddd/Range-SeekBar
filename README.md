@@ -1,7 +1,10 @@
 # Range-SeekBar
 Android Range SeekBar, as close as possible as the original SeekBar
 
-[![](https://jitpack.io/v/Mirkoddd/Range-SeekBar.svg)](https://jitpack.io/#Mirkoddd/Range-SeekBar)
+[![](https://jitpack.io/v/Mirkoddd/Range-SeekBar.svg)](https://jitpack.io/#Mirkoddd/Range-SeekBar) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/25c70ef8d1fc49799edff02490dc4882)](https://www.codacy.com/app/Mirkoddd/Range-SeekBar?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Mirkoddd/Range-SeekBar&amp;utm_campaign=Badge_Grade)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 
 ## Installation
 
