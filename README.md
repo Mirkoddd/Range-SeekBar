@@ -1,3 +1,5 @@
+ [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20out%20Android%20Range%20SeekBar%20on%20Github%20&url=https://github.com/Mirkoddd/Range-SeekBar&hashtags=android,materialdesign) 
+
 # Range-SeekBar
 Android Range SeekBar, as close as possible as the original SeekBar
 
