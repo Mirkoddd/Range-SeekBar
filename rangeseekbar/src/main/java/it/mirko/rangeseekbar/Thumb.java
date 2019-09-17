@@ -58,7 +58,7 @@ public class Thumb extends FrameLayout {
         scrubber = new View(context);
         int colorAccent = ContextCompat.getColor(context, getStyledValueFor(context, R.attr.colorControlActivated));
 
-        Drawable drawable = getResources().getDrawable(R.drawable.seekbar_thumb_material_anim);
+        Drawable drawable = getDrawableSupport(context, R.drawable.seekbar_thumb_material_anim);
         Drawable wrapDrawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTint(wrapDrawable, colorAccent);
         scrubber.setBackground(wrapDrawable);
@@ -107,4 +107,11 @@ public class Thumb extends FrameLayout {
         return thumb.width();
     }
 
+    private Drawable getDrawableSupport(Context context, int resId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return context.getDrawable(resId);
+        } else {
+            return getResources().getDrawable(resId);
+        }
+    }
 }
